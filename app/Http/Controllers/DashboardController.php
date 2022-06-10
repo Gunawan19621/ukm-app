@@ -40,19 +40,17 @@ class DashboardController extends Controller
         // mengambil id UKM yang dipilih dari hasil request url
         $req = UKM::firstWhere('slug',request('detail'));
         $var = $req->id;
-        // if (request('detail')) {
-        //     $varKegiatan = Kegiatan::where('ukm_id',$var)->get();
-        // }
-        // $varr = $varKegiatan->id;
-        // dd($varProposal);
-        //     return false;
-        $varProposal = Proposal::where('kegiatan_id',$varr)->get();
+        $vardKegiatan = Kegiatan::firstWhere('ukm_id',$var);
+        $varr = $vardKegiatan->id;
+        $proposal = Proposal::where('kegiatan_id',$varr)->get();
 
-        return view('dashboard.showProposal',[
-            'title' => 'Detail Proposal | ' . request('detail'),
-            'props' => $varProposal,
-            'ukm'=>$req
+            // dd($proposal);
+            // return false;
+            return view('dashboard.showProposal',[
+                'title' => 'Detail Proposal | ' . request('detail'),
+                'proposal' => $data,
+                'ukm'=>$req
 
-        ]);
+            ]);
+        }
     }
-}

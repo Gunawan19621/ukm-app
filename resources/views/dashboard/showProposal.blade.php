@@ -29,10 +29,11 @@
                                 </caption>
                             </thead>
                             <tbody>
-                                @foreach($props as $prop)
-
-                                <tr>
-                                    <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
+                                @foreach($proposal as $prop)
+                                {{-- <tr>
+                                    <td>{{ $prop['kegiatan_id'] }}</td>
+                                </tr> --}}
+                                <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ukm->nama_ukm }}</td>
                                     <td>{{ $prop->nama_proposal }}</td>
@@ -51,7 +52,7 @@
                                         @php
                                         $komentar = url('/act-komentar?act-ditolak='.$prop->slug);
                                         if ($prop->komentar) {
-                                            if ($prop->ukm->status != 0) {
+                                            if ($ukm->status != 0) {
                                                 echo '<p class="badge bg-danger">Ditolak</p>
                                                 <a href="" class="d-block link-danger" title="Komentar"
                                                 data-bs-toggle="tooltip"
@@ -118,13 +119,12 @@
                                     }
                                     @endphp
                                 </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection
