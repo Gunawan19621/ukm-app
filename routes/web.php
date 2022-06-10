@@ -37,11 +37,29 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/', function () {
-    return view('welcome',[
+    return view('pages.welcome',[
         'title'=>'UKM Application'
     ]);
 
 })->name('/');
+
+Route::get('/tentangAplikasi', function(){
+    return view('pages.about',[
+        'title'=>'Tentang Aplikasi'
+    ]);
+})->name('about');
+
+Route::get('/unitkegiatanmahasiswa', function(){
+    return view('pages.ukm',[
+        'title'=>'Unit Kegiatan Mahasiswa POLINDRA'
+    ]);
+})->name('ukmPolindra');
+
+Route::get('/Lisensi', function(){
+    return view('pages.lisensi',[
+        'title'=>'Lisensi'
+    ]);
+})->name('lisensiPolindra');
 
 // Laravel Manager
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

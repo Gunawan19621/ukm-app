@@ -49,19 +49,20 @@
         <nav id="navbar" class="navbar nav-menu">
             <ul>
                 <li>
-                    <a href="#hero" class="nav-link scrollto active"
+                    <a href="/" class="nav-link scrollto {{ Request::is('/') ? 'active' : '' }}"
                     ><i class="bx bx-home"></i> <span>Home</span></a
                     >
                 </li>
                 <li>
-                    <a href="#portfolio" class="nav-link scrollto"
+                    <a href="{{ route('about') }}" class="nav-link scrollto {{ Request::is('tentangAplikasi') ? 'active' : '' }}"
                     ><i class="bx bx-book-content"></i>
                     <span>Tentang Aplikasi</span></a
                     >
                 </li>
                 <li>
-                    <a href="#services" class="nav-link scrollto"
-                    ><i class="bx bx-stats"></i> <span>UKM</span></a
+                    <a href="{{ route('ukmPolindra') }}" class="nav-link scrollto {{ Request::is('unitkegiatanmahasiswa') ? 'active' : '' }}"
+                    ><i class="bx bx-stats"></i> 
+                    <span>UKM</span></a
                     >
                 </li>
                 @if (Route::has('login'))
@@ -82,7 +83,7 @@
                 @endauth
                 @endif
                 <li>
-                    <a href="#resume" class="nav-link scrollto"
+                    <a href="{{ route('lisensiPolindra') }}" class="nav-link scrollto {{ Request::is('Lisensi') ? 'active' : '' }}"
                     ><i class="bx bx-book-reader"></i>
                     <span>Lisensi</span></a
                     >
@@ -92,7 +93,7 @@
         <!-- .nav-menu -->
     </header>
     <!-- End Header -->
-
+@if(Request::is('/'))
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex flex-column justify-content-center">
         <div class="container" data-aos="zoom-in" data-aos-delay="100">
@@ -122,7 +123,13 @@
                                 ></a>
                             </div>
                         </div>
-                    </section>
+    </section>
+@else
+
+    <main id="main">
+        @yield('content')
+    </main>
+@endif
                     <!-- End Hero -->
                     <div id="preloader"></div>
                     <a
